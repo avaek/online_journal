@@ -12,4 +12,10 @@ class StaticPagesController < ApplicationController
 
   def about
   end
+
+#this can be deleted when finished testing
+  def newpost
+      @post  = current_user.posts.build
+      @feed_items = current_user.feed
+  end
 end
