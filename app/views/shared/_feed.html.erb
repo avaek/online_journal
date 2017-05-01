@@ -1,6 +1,13 @@
 <% if @feed_items.any? %>
-  <ol class="posts">
-    <%= render @feed_items %>
-  </ol>
-  <%= will_paginate @feed_items %>
-<% end %>
+  <% @feed_items.in_groups_of(3, false).each do |feeds| %>
+    <div class="row">
+      <% feeds.each do |feed| %>
+        <div class="col-md-4">
+        <ol class="posts">
+          <%= render feed %>
+          </ol>
+        </div>
+      <% end %>
+    </div>
+ <% end %>
+ <% end %>
