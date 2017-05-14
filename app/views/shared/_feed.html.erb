@@ -1,13 +1,30 @@
 <% if @feed_items.any? %>
-  <% @feed_items.in_groups_of(3, false).each do |feeds| %>
-    <div class="row">
-      <% feeds.each do |feed| %>
-        <div class="col-md-4">
-        <ol class="posts">
-          <%= render feed %>
-          </ol>
-        </div>
+<% @feed_items.in_groups_of(3, false).each do |feeds| %>
+<div class="row">
+
+  <% feeds.each do |post| %>
+  <div class="col-md-4">
+    <ol class="posts">
+
+
+      <% if post.status == 'new' %>
+      <div class="new-post">
+       <%= link_to edit_post_path(post) do %>
+       <%= render post %>
+       <% end %>
+     </div>
+
+     <% else %>
+     <div class="edited-post">
+      <%= link_to post_path(post) do %>
+      <%= render post %>
       <% end %>
     </div>
- <% end %>
- <% end %>
+    <% end %>
+
+  </ol>
+</div>
+<% end %>
+</div>
+<% end %>
+<% end %>

@@ -72,10 +72,21 @@ class User < ApplicationRecord
   end
 
   # Defines a proto-feed.
-  # See "Following users" for the full implementation.
   def feed
     Post.where("user_id = ?", id)
   end
+
+ #used for automatically generating posts in rake task
+ def generate_post
+  posts.create!(content: "RAKED", status: "new")
+ end
+
+#used for displaying how many new (unedited) posts a user has
+ def how_many_new_posts?
+  new_posts = posts.where(status: 'new')
+  new_posts.count
+ end
+
 
 
     private

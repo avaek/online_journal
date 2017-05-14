@@ -1,15 +1,23 @@
-namespace :abc do 
-	desc "Used to generate a new daily log"
+namespace :abc do
 
-task :create_post => :environment do
+  desc "Used to generate a new daily log"
 
-	User.find_each do |currentUser|
-     starting_date = currentUser.start_date
+  task :create_post => :environment do
 
-     Post.create!(content: "RAKED", user: currentUser) if Date.today >= starting_date && Date.today.on_weekday?
+    User.find_each do |currentUser|
+
+      starting_date = currentUser.start_date.to_datetime
+
+
+      if Date.today >= starting_date && Date.today.on_weekday?
+        if currentUser.posts.count.zero?
+          starting_date.upto(Date.today) { |date| currentUser.generate_post if date.on_weekday? }
+        #the generate_post method is in user model
+        else
+          currentUser.generate_post
+        end
+      end
     end
-
-puts "It worked yo"  	
-end
-	
+    puts "It actually worked yo!"
+  end
 end

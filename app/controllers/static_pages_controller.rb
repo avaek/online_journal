@@ -4,7 +4,11 @@ class StaticPagesController < ApplicationController
     if logged_in?
       @post  = current_user.posts.build
       @feed_items = current_user.feed
+      if is_admin?
+      @users = User.paginate(page: params[:page])
     end
+    end
+
   end
 
   def help

@@ -173,6 +173,12 @@ input {
   margin-left: 0;
 }
 
+#post_button{
+       display:block; /* change this from inline-block */
+    width:20%; /* setting the width */
+    margin:0 auto; /* this will center  it */
+}
+
 /* Users index */
 
 .users {
@@ -188,12 +194,9 @@ input {
 /* posts */
 
 .posts {
-  list-style: none;
-  padding: 0;
-  li {
     padding: 10px 0;
     border-top: 1px solid #e8e8e8;
-  }
+
   .content {
     display: block;
     margin-left: 60px;
@@ -221,4 +224,23 @@ span.picture {
   input {
     border: 0;
   }
+}
+
+.new-post {
+      background: #F46464;
+}
+
+#how_many_posts_red{
+  display:inline;
+  color: #FF0000;
+}
+
+#how_many_posts_orange{
+  display:inline;
+  color: #FF8C00;
+}
+
+#how_many_posts_green{
+  display:inline;
+  color: #008000;
 }

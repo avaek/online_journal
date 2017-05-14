@@ -1,7 +1,23 @@
+ <%#= this is a partial for displaying all users to the admin %>
+
+
 <li>
   <%= link_to user.name, user %>
+   <%#= the following if/elsifs are for setting the colour of the posts to different colours for different alerts %>
+  <% if user.how_many_new_posts? >= 6 %>
+  <div id="how_many_posts_red">
+    | <%= pluralize(user.how_many_new_posts?, "unedited post") %> 
+    <% elsif user.how_many_new_posts? >= 3 %>
+    <div id = "how_many_posts_orange">
+    | <%= pluralize(user.how_many_new_posts?, "unedited post") %>
+     <% else  %>
+    <div id = "how_many_posts_green">
+    | <%= pluralize(user.how_many_new_posts?, "unedited post") %>
+     <% end %>
   <% if current_user.admin? && !current_user?(user) %>
-    | <%= link_to "delete", user, method: :delete,
+    | <%= link_to "delete account", user, method: :delete,
                                   data: { confirm: "You sure?" } %>
   <% end %>
+ 
 </li>
+
