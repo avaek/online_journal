@@ -39,6 +39,11 @@ module SessionsHelper
   def is_admin?
     current_user.admin?
   end
+
+# Returns true if the user start date is set, false otherwise.
+  def start_date_set?
+     current_user.start_date?
+  end
   
   # Forgets a persistent session.
   def forget(user)

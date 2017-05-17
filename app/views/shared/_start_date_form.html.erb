@@ -1,0 +1,10 @@
+<%= form_for(current_user) do |u| %>
+  <div class="field">
+<%= u.date_field :start_date %>
+
+<%#= u.label :start_date %> <%#= u.date_select(:start_date, :order => [:month, :day, :year]) %>
+  </div>
+   <div id="post_button">
+  <%= u.submit "Set start date", class: "btn btn-primary" %>
+  </div>
+<% end %>

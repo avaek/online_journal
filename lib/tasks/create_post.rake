@@ -6,15 +6,17 @@ namespace :abc do
 
     User.find_each do |currentUser|
 
-      starting_date = currentUser.start_date.to_datetime
+      starting_date = currentUser.start_date
 
 
-      if Date.today >= starting_date && Date.today.on_weekday?
+      if Date.today >= starting_date && Date.today.on_weekday? && !currentUser.admin
+        
+        #if no current posts, retroactively generate thems. if current posts, just generates todays post
         if currentUser.posts.count.zero?
-          starting_date.upto(Date.today) { |date| currentUser.generate_post if date.on_weekday? }
-        #the generate_post method is in user model
+          starting_date.upto(Date.today) { |date| currentUser.generate_post(date) if date.on_weekday? }
+        #
         else
-          currentUser.generate_post
+          currentUser.generate_post(Date.today)
         end
       end
     end

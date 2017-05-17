@@ -77,8 +77,8 @@ class User < ApplicationRecord
   end
 
  #used for automatically generating posts in rake task
- def generate_post
-  posts.create!(content: "RAKED", status: "new")
+ def generate_post(date)
+  posts.create!(content: "Click to enter your daily log for this day", status: "new", created_at: date)
  end
 
 #used for displaying how many new (unedited) posts a user has

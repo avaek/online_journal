@@ -194,41 +194,30 @@ input {
 /* posts */
 
 .posts {
-    padding: 10px 0;
-    border-top: 1px solid #e8e8e8;
-
+    border-radius: 25px;
+    padding: 1rem 2.5%;
   .content {
+    font-weight: normal;
     display: block;
-    margin-left: 60px;
-    img {
-      display: block;
-      padding: 5px 0;
-    }
+
   }
   .timestamp {
+    font-weight: bold;
     color: $gray-light;
     display: block;
     margin-left: 60px;
   }
 }
 
-aside {
-  textarea {
-    height: 100px;
-    margin-bottom: 5px;
-  }
-}
-
-span.picture {
-  margin-top: 10px;
-  input {
-    border: 0;
-  }
-}
-
 .new-post {
-      background: #F46464;
+    border-radius: 25px;
+    border: 3px solid #F46464;
 }
+
+.edited-post {
+    border-radius: 25px;
+    border: 3px solid #008000;
+  }
 
 #how_many_posts_red{
   display:inline;
@@ -244,3 +233,4 @@ span.picture {
   display:inline;
   color: #008000;
 }
+

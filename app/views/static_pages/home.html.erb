@@ -9,16 +9,23 @@
   <%= render @users %>
 </ul>
 
-<%#=if logged in but not admin: %>
+<%#=if logged in as user & startdate not set: %>
+<%elsif !start_date_set? %>
+<h2>Enter the start date of your internship and daily logs will be automatically generated each day at midnight</h2>
+<%= render 'shared/start_date_form' %>
+
+<%#=if logged in & user & startdate set: %>
 <%else %>
   <div class="row">
         <div class="col-md-12">
-      <h3>Daily Logs</h3>
+      <h2>Daily Logs</h2>
       <%= render 'shared/feed' %>
     </div>
   </div>
+
  <% end %> 
   
+
  <%#=if not logged in %> 
 <% else %>
 <div class="center jumbotron">

@@ -1,9 +1,13 @@
-<% if @feed_items.any? %>
-<% @feed_items.in_groups_of(3, false).each do |feeds| %>
-<div class="row">
+<% @posts_by_month.each do |monthname, posts| %>
 
-  <% feeds.each do |post| %>
-  <div class="col-md-4">
+<%# this displays the month name, and the clear left is so it goes to a new line%>
+<div style="clear:left"><h2><%= monthname %></h2></div>
+
+
+   <% for post in posts %>
+     
+     <div style="float:left;width:33%">  
+
     <ol class="posts">
 
 
@@ -23,8 +27,9 @@
     <% end %>
 
   </ol>
-</div>
-<% end %>
-</div>
-<% end %>
+
+     </div>
+
+   <% end %>
+
 <% end %>
