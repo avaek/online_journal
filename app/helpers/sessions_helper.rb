@@ -44,6 +44,13 @@ module SessionsHelper
   def start_date_set?
      current_user.start_date?
   end
+
+  #Returns true if the user is supervisor, false otherwise
+  def is_supervisor?
+     current_user.supervisor?
+  end
+
+
   
   # Forgets a persistent session.
   def forget(user)

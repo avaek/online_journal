@@ -1,3 +1,13 @@
+
+<%# if no posts exist%>
+<% if current_user.no_posts? && !current_user.admin? %>
+<h2>Posts will be generated automatically daily from the start date you entered.
+<br>Your start date is <%= current_user.start_date %>
+</h2>
+
+<%# if posts exist %>
+<% else %>
+
 <% @posts_by_month.each do |monthname, posts| %>
 
 <%# this displays the month name, and the clear left is so it goes to a new line%>
@@ -5,7 +15,7 @@
 
 
    <% for post in posts %>
-     
+     <% post.content = truncate(post.content, length: 42) %>
      <div style="float:left;width:33%">  
 
     <ol class="posts">
@@ -31,5 +41,7 @@
      </div>
 
    <% end %>
+
+<% end %>
 
 <% end %>

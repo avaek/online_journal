@@ -7,8 +7,12 @@ class StaticPagesController < ApplicationController
     #following two lines are for organizing posts by month
  @posts_by_month = current_user.feed.group_by { |post| post.created_at.strftime("%B") }
       if is_admin?
-      @users = User.paginate(page: params[:page])
+      @users = User.where(admin: false, supervisor: false)
+      @admins = User.where(admin: true)
+      @supervisors = User.where(supervisor: true)
     end
+
+    
     end
 
   end
@@ -19,13 +23,7 @@ class StaticPagesController < ApplicationController
   def about
   end
 
-#this can be deleted when finished testing
-  def newpost
-    if logged_in?
-      @post  = current_user.posts.build
-      @feed_items = current_user.feed
-  end
-end
+
 
 
 

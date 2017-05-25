@@ -179,6 +179,13 @@ input {
     margin:0 auto; /* this will center  it */
 }
 
+#start_date_field{
+       display:block; /* change this from inline-block */
+    width:20%; /* setting the width */
+    margin:0 auto; /* this will center  it */
+
+}
+
 /* Users index */
 
 .users {

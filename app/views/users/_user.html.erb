@@ -3,20 +3,37 @@
 
 <li>
   <%= link_to user.name, user %>
+
+<%#= the next line is so only users have post count display %>
+  <% if !user.admin? && !user.supervisor? %>
    <%#= the following if/elsifs are for setting the colour of the posts to different colours for different alerts %>
+
   <% if user.how_many_new_posts? >= 6 %>
   <div id="how_many_posts_red">
-    | <%= pluralize(user.how_many_new_posts?, "unsubmitted daily post") %> 
+    | <%= pluralize(user.how_many_new_posts?, "unsubmitted daily post") %>  |
     <% elsif user.how_many_new_posts? >= 3 %>
     <div id = "how_many_posts_orange">
-    | <%= pluralize(user.how_many_new_posts?, "unsubmitted daily post") %>
+    | <%= pluralize(user.how_many_new_posts?, "unsubmitted daily post") %> |
      <% else  %>
     <div id = "how_many_posts_green">
-    | <%= pluralize(user.how_many_new_posts?, "unsubmitted daily post") %>
+    | <%= pluralize(user.how_many_new_posts?, "unsubmitted daily post") %> |
      <% end %>
-  <% if current_user.admin? && !current_user?(user) %>
-    | <%= link_to "delete account", user, method: :delete,
+
+<% end %>
+
+  <% if current_user.admin? && !user.supervisor? && !user.admin? %>
+     <%= link_to 'Make Supervisor', make_supervisor_path(id: user), remote: true, class: "btn btn-xs btn-success",
                                   data: { confirm: "You sure?" } %>
+  <% end %>
+
+  <% if current_user.admin? && !current_user?(user) %>
+     <%= link_to "delete account", user, class: "btn btn-xs btn-danger", method: :delete,
+                                  data: { confirm: "You sure?" } %>
+  <% end %>
+
+    <% if current_user.admin? && !current_user?(user) %>
+     <%= link_to "email user", user, class: "btn btn-xs btn-success", 
+                                  data: { confirm: "This feature is not yet implemented" } %>
   <% end %>
 
 </li>

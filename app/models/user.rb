@@ -87,6 +87,19 @@ class User < ApplicationRecord
   new_posts.count
  end
 
+   #used for turning a user into a supervisor
+
+ def make_supervisor
+   User.update_attribute :supervisor, true
+ end
+
+#returns true if no posts exist
+ def no_posts?
+  if posts.count == 0
+  return true
+  end
+ end
+
 
 
     private

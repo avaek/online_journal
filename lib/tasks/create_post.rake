@@ -9,7 +9,7 @@ namespace :abc do
       starting_date = currentUser.start_date
 
 
-      if Date.today >= starting_date && Date.today.on_weekday? && !currentUser.admin
+      if Date.today >= starting_date && Date.today.on_weekday? && !currentUser.admin && !currentUser.supervisor
         
         #if no current posts, retroactively generate thems. if current posts, just generates todays post
         if currentUser.posts.count.zero?

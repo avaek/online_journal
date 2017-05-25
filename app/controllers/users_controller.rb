@@ -5,11 +5,13 @@ class UsersController < ApplicationController
   
   def index
     @users = User.paginate(page: params[:page])
+
   end
 
   def show
     @user = User.find(params[:id])
     @posts = @user.posts.paginate(page: params[:page])
+    @posts_by_month = @user.feed.group_by { |post| post.created_at.strftime("%B") }
   end
 
   def new
@@ -35,7 +37,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     if @user.update_attributes(user_params)
       flash[:success] = "Profile updated"
-      redirect_to @user
+      redirect_to root_url
     else
       render 'edit'
     end
@@ -47,11 +49,15 @@ class UsersController < ApplicationController
     redirect_to users_url
   end
 
+  def make_supervisor
+  User.find(params[:id]).update_attribute(:supervisor, true)
+  end
+
     private
 
     def user_params
       params.require(:user).permit(:name, :email, :password,
-                                   :password_confirmation, :start_date)
+                                   :password_confirmation, :start_date, :supervisor)
     end
 
 
